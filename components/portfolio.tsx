@@ -134,6 +134,7 @@ export default function Portfolio({ availableMedia = [] }: { availableMedia?: st
         </span>
         <div className="navbar-content">
         <a className="wordmark" href="#home" aria-label="Mohammed Rifky home">mr<span>.</span></a>
+        <button className="mobile-ask" onClick={() => setOverlay('chat')} aria-label="Ask Rifky AI" aria-haspopup="dialog"><Command size={13} aria-hidden="true" /><span>Ask Rifky...</span></button>
         <div className="desktop-nav"><NavigationLens active={active} />{navigation.map(name => <a className={active === name.toLowerCase() ? 'active' : ''} aria-current={active === name.toLowerCase() ? 'location' : undefined} key={name} href={`#${name.toLowerCase()}`}><span className="nav-label">{name}</span></a>)}</div>
         <div className="nav-tools">
           <button className="icon-button command-toggle" onClick={() => setOverlay('palette')} aria-label="Open command palette (Control or Command K)" aria-haspopup="dialog"><Command size={15} /><span>K</span></button><span className="nav-divider" />
