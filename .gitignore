@@ -1,0 +1,32 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+*.tsbuildinfo
+
+# Build output, local tooling, and temporary files
+dist/
+build/
+coverage/
+.vercel/
+.turbo/
+.cache/
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Local credentials and private key files
+.aws/
+.ssh/
+.npmrc
+*.pem
+*.key
+credentials.json
+service-account*.json
