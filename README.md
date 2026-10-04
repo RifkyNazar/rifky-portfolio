@@ -30,7 +30,7 @@ The portrait uses a designed monogram fallback. The CV checks availability befor
 
 ## Content and contact
 
-Portfolio facts, links, education, projects, skills and certifications live in `data/portfolio.ts`. Contact prepares a mailto draft; it does not send or store messages. The visitor must send from their email app.
+Portfolio facts, links, education, projects, skills and certifications live in `data/portfolio.ts`. Contact sends a notification through the server-side Gmail SMTP endpoint. See [contact email setup](docs/contact-email.md) for credentials, testing, and serverless throttling limitations.
 
 ## Assistant boundary
 

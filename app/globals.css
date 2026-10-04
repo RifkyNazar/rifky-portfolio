@@ -424,7 +424,7 @@ textarea { resize: vertical; min-height: 104px; max-height: 260px; }
 .contact-form .button { width: 100%; margin-top: 4px; }
 .form-note { color: var(--muted); font-size: 10px; line-height: 1.7; margin-top: 15px; }
 .form-note.error { color: var(--error); }
-.form-note.draft { color: var(--success); }
+.form-note.success { color: var(--success); }
 .draft-link { font-size: 10px; }
 .spinner { animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
