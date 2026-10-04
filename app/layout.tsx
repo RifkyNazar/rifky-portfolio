@@ -3,6 +3,11 @@ import { profile } from '@/data/portfolio';
 import { personStructuredData, siteDescription, siteTitle, siteUrl } from '@/lib/site-metadata';
 import './globals.css';
 
+export const viewport: import('next').Viewport = {
+  width: 'device-width', initialScale: 1, viewportFit: 'cover',
+  interactiveWidget: 'resizes-content',
+};
+
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: { default: siteTitle, template: `%s | ${profile.name}` },

@@ -10,6 +10,31 @@ export function Modal({ children, label, onClose, className = '' }: { children: 
   const reduced = useReducedMotion();
   const reflection = useLiquidReflection();
   useEffect(() => {
+    const overlay = ref.current?.parentElement;
+    const viewport = window.visualViewport;
+    const phone = window.matchMedia('(max-width: 600px)');
+    if (!overlay || !viewport) return;
+    // Mobile keyboards can shrink the visual viewport without resizing 100dvh.
+    const fit = () => {
+      if (phone.matches) {
+        overlay.style.setProperty('--phone-viewport-height', `${viewport.height}px`);
+        overlay.style.setProperty('--phone-viewport-top', `${viewport.offsetTop}px`);
+      } else {
+        overlay.style.removeProperty('--phone-viewport-height');
+        overlay.style.removeProperty('--phone-viewport-top');
+      }
+    };
+    fit();
+    viewport.addEventListener('resize', fit);
+    viewport.addEventListener('scroll', fit);
+    phone.addEventListener('change', fit);
+    return () => {
+      viewport.removeEventListener('resize', fit);
+      viewport.removeEventListener('scroll', fit);
+      phone.removeEventListener('change', fit);
+    };
+  }, []);
+  useEffect(() => {
     const previous = document.activeElement as HTMLElement | null;
     const el = ref.current;
     const overlay = el?.parentElement;

@@ -1,6 +1,7 @@
 ﻿'use client';
 import { motion, useReducedMotion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { useEffect, type ReactNode, type PointerEvent } from 'react';
+import { usePhoneView } from './use-phone-view';
 
 export function useLiquidReflection(enabled = true) {
   const reduced = useReducedMotion();
@@ -33,7 +34,8 @@ export const Glass = LiquidGlass;
 
 export function Reveal({ children, className = '', delay = 0, distance = 22 }: { children: ReactNode; className?: string; delay?: number; distance?: number }) {
   const reduced = useReducedMotion();
-  return <motion.div className={className} initial={reduced ? false : { opacity: 0, y: distance }} animate={reduced ? { opacity: 1, y: 0 } : undefined} whileInView={reduced ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }} transition={{ duration: reduced ? 0 : .55, delay: reduced ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>;
+  const phone = usePhoneView();
+  return <motion.div className={className} variants={{ hidden: { opacity: 0, y: phone ? Math.min(distance, 12) : distance }, visible: { opacity: 1, y: 0 } }} initial={reduced ? false : 'hidden'} animate={reduced ? 'visible' : undefined} whileInView={reduced ? undefined : 'visible'} viewport={{ once: true, amount: .15 }} transition={{ duration: reduced ? 0 : .55, delay: reduced ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>;
 }
 
 export function Magnetic({ children, className = '' }: { children: ReactNode; className?: string }) {

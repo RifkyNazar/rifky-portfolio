@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ArrowUpRight, Github, ChevronDown, HeartHandshake, Droplets, Sprout, PencilRuler } from 'lucide-react';
 import { projects, type Project } from '@/data/portfolio';
 import { ProjectMedia } from './project-media';
+import { usePhoneView } from '@/components/ui/use-phone-view';
 
 const entranceEase = [0.22, 1, 0.36, 1] as const;
 const copyItem = { hidden: { opacity: 0, y: 6 }, visible: { opacity: 1, y: 0, transition: { duration: .45, ease: entranceEase } } };
@@ -23,13 +24,14 @@ function ProjectArtwork({ visual }: { visual: Project['visual'] }) {
 export default function ProjectShowcase({ availableMedia }: { availableMedia: string[] }) {
   const [open, setOpen] = useState<number | null>(null);
   const reduced = useReducedMotion();
+  const phone = usePhoneView();
   const itemVariants = reduced ? immediateReveal : copyItem;
   return <div className="project-list">{projects.map((project, index) => <motion.div key={project.title} initial={reduced ? false : 'hidden'} animate={reduced ? 'visible' : undefined} whileInView={reduced ? undefined : 'visible'} viewport={{ once: true, amount: .12 }}>
     <motion.article className={`project project-${project.visual} ${index % 2 ? 'project-reverse' : ''}`} variants={reduced ? immediateReveal : { hidden: { opacity: .5, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: .55, ease: entranceEase } } }}>
-      <motion.div className="project-media-entry" variants={reduced ? immediateReveal : { hidden: { opacity: 0, x: index % 2 ? 24 : -24, y: 20, scale: .98 }, visible: { opacity: 1, x: 0, y: 0, scale: 1, transition: { duration: .6, ease: entranceEase } } }}>
+      <motion.div className="project-media-entry" variants={reduced ? immediateReveal : { hidden: { opacity: 0, x: (index % 2 ? 1 : -1) * (phone ? 8 : 24), y: phone ? 12 : 20, scale: .98 }, visible: { opacity: 1, x: 0, y: 0, scale: 1, transition: { duration: .6, ease: entranceEase } } }}>
       <ProjectMedia media={project.media} availableMedia={availableMedia} fallback={<ProjectArtwork visual={project.visual} />} />
       </motion.div>
-      <motion.div className="project-copy" variants={reduced ? immediateReveal : { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: .55, ease: entranceEase, delayChildren: .06, staggerChildren: .05 } } }}><div className="project-number">{String(index + 1).padStart(2, '0')}<span>/</span></div><motion.span className="eyebrow" variants={itemVariants}>{project.category}</motion.span><motion.h3 variants={itemVariants}>{project.title}</motion.h3><motion.p className="project-subtitle" variants={itemVariants}>{project.subtitle}</motion.p><motion.p className="body-copy" variants={itemVariants}>{project.solution}</motion.p><motion.div className="tags" variants={itemVariants}>{project.technologies.map(technology => <span key={technology}>{technology}</span>)}</motion.div>
+      <motion.div className="project-copy" variants={reduced ? immediateReveal : { hidden: { opacity: 0, y: phone ? 12 : 24 }, visible: { opacity: 1, y: 0, transition: { duration: .55, ease: entranceEase, delayChildren: .06, staggerChildren: .05 } } }}><div className="project-number">{String(index + 1).padStart(2, '0')}<span>/</span></div><motion.span className="eyebrow" variants={itemVariants}>{project.category}</motion.span><motion.h3 variants={itemVariants}>{project.title}</motion.h3><motion.p className="project-subtitle" variants={itemVariants}>{project.subtitle}</motion.p><motion.p className="body-copy" variants={itemVariants}>{project.solution}</motion.p><motion.div className="tags" variants={itemVariants}>{project.technologies.map(technology => <span key={technology}>{technology}</span>)}</motion.div>
         <motion.div className="project-actions" variants={itemVariants}><button className="text-link" onClick={() => setOpen(open === index ? null : index)} aria-expanded={open === index} aria-controls={`project-detail-${index}`}>Behind the project<ChevronDown size={15} style={{ transform: open === index ? 'rotate(180deg)' : undefined }} /></button>{project.url && <a className="project-github text-link" href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on GitHub`}><Github size={16} />GitHub<ArrowUpRight size={14} /></a>}</motion.div>
       </motion.div>
       <div id={`project-detail-${index}`} className="project-detail-region"><AnimatePresence initial={false}>{open === index && <motion.div className="project-detail-motion" initial={reduced ? false : { height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduced ? 0 : .35, ease: [.22, 1, .36, 1] }}>
