@@ -15,13 +15,38 @@ export const navigation = ['Home', 'About', 'Experience', 'Projects', 'Skills', 
 export type Project = {
   title: string; subtitle: string; category: string; problem: string; solution: string;
   contribution: string; outcome: string; technologies: string[]; url?: string;
-  visual: 'jws' | 'drawing' | 'water' | 'digits' | 'plant';
+  visual: 'jws' | 'drawing' | 'water' | 'digits' | 'plant' | 'finance';
+  description?: string;
+  features?: string[];
   media?: ProjectMediaData;
 };
 export type ProjectMediaData = {
   layout: 'desktop' | 'mobile' | 'pipeline' | 'comparison';
   images: { src: string; label: string; alt: string }[];
 };
+export const financeProject = {
+  title: 'Personal Finance & Schedule Management System',
+  subtitle: 'Windows Desktop Application',
+  category: 'FINANCE & PRODUCTIVITY MANAGEMENT',
+  problem: 'Personal finances and deadlines are easier to stay on top of when records, budgets, and schedules are accessible in one place.',
+  solution: 'A C++ and Qt-based desktop application for managing personal finances, budgets, schedules, and upcoming deadlines through a graphical interface.',
+  description: 'A desktop-based personal finance and productivity management application designed to help users organize their income, expenses, budgets, schedules, and upcoming deadlines. Developed using C++17 and Qt 6.8.0, the system features user authentication, automated financial calculations, category-wise budget monitoring, financial reports, and personalized data management using local file-based storage.',
+  contribution: 'Desktop application development for Windows using an event-driven, object-oriented architecture.',
+  outcome: 'A Windows application that brings personal finance and schedule management together with locally stored user records.',
+  technologies: ['C++17', 'Qt 6.8.0', 'Qt Widgets', 'Qt Designer', 'QSS', 'qmake', 'MinGW-w64', 'TXT Files'],
+  features: [
+    'User Registration & Authentication',
+    'Income & Expense Management',
+    'Category-wise Budget Monitoring',
+    'Automated Financial Reports',
+    'Schedule Management',
+    'Upcoming Deadline Tracking',
+    'Local File-Based Data Storage',
+    'Personalized User Records',
+  ],
+  visual: 'finance',
+} satisfies Project;
+
 export const projects: Project[] = [
   {
     title: 'Janaza Welfare Society', subtitle: 'Technology in service of community.', category: 'FULL-STACK WEB APPLICATION',
@@ -71,6 +96,7 @@ export const projects: Project[] = [
     contribution: 'University group project work exploring edge detection and plant-image analysis.',
     outcome: 'An exploration of computer vision for observing plant characteristics.', technologies: ['Computer Vision', 'Edge detection', 'Image dimensions', 'Image analysis'], visual: 'plant',
   },
+  financeProject,
 ];
 export const skills: Record<string, string[]> = {
   Programming: ['JavaScript', 'TypeScript', 'Python', 'Java', 'SQL', 'HTML', 'CSS'],

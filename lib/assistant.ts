@@ -1,5 +1,7 @@
 ﻿import { certifications, education, profile, projects, skills, jwsFeatures } from '@/data/portfolio';
 
+import { financeProject } from '@/data/portfolio';
+
 export const suggestions = [
   'Tell me about Rifky', 'Show me his best projects', 'What technologies does he use?',
   'Tell me about JWS', 'What AI/ML work has he done?', 'How can I contact Rifky?',
@@ -17,6 +19,9 @@ export function getLocalResponse(question: string): string {
   if (/water|hydrat|android/.test(q)) return `${projects[2].solution} It uses SQLite and CRUD operations to maintain local intake records. Repository: ${projects[2].url}`;
   if (/spark|digit|handwrit/.test(q)) return `${projects[3].solution} It explores image processing and classification as a university group project. Repository: ${projects[3].url}`;
   if (/plant|leaf|leaves/.test(q)) return `${projects[4].solution} It is a university group project. No repository URL has been supplied.`;
+  if (/\b(?:finance|financial|budget\w*|desktop|qt|schedule management|qmake|mingw)\b/.test(q) || /\bc\s*\+\+/i.test(question)) {
+    return `Rifky developed the ${financeProject.title}, a ${financeProject.subtitle}. ${financeProject.description}\n\nKey features: ${financeProject.features.join(', ')}.\n\nTechnology stack: ${financeProject.technologies.join(', ')}. ${financeProject.contribution}`;
+  }
   if (/certif|course|credential/.test(q)) return `His certifications include ${certifications.map(([title, issuer]) => `${title} (${issuer})`).join('; ')}.`;
   if (/education|university|degree|graduat|faculty|study|studies/.test(q)) return `Rifky is studying ${education.degree} at ${education.university}, ${education.faculty}. ${education.period}; expected graduation: ${education.graduation}.`;
   if (/linkedin/.test(q)) return `Find Rifky on LinkedIn: ${profile.linkedin}`;

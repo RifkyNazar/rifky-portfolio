@@ -307,6 +307,11 @@ h4 { font-weight: 500; }
 .project-detail-motion { overflow: hidden; }
 .project-details { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 36px; padding: clamp(20px, 3vw, 32px); border-radius: 22px; overflow-wrap: anywhere; }
 .project-details .text-link { justify-self: end; align-self: end; }
+.project-detail-features ul { list-style: disc; padding-inline-start: 1.25em; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.art-finance .finance-mockup { max-width: 420px; }
+.finance-mockup-panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(4px, 1.5vw, 12px); padding: clamp(8px, 2vw, 22px); }
+.finance-mockup-panels > div { display: grid; justify-items: center; gap: 8px; padding: 16px 2px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-hover); color: var(--muted); font-size: 10px; }
+.finance-mockup-panels svg { width: 20px; height: 20px; color: var(--accent); }
 .project-art { position: relative; min-height: 370px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--material-line); border-radius: 24px; background: radial-gradient(ellipse at 60% 35%, var(--ambient), transparent 60%), var(--art); overflow: hidden; }
 .art-grid { position: absolute; inset: 0; opacity: .22; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse, black, transparent 80%); }
 .art-drawing { background: radial-gradient(ellipse at 35% 65%, var(--ambient), transparent 65%), var(--art); }

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, Github, ChevronDown, HeartHandshake, Droplets, Sprout, PencilRuler } from 'lucide-react';
+import { ArrowUpRight, Github, ChevronDown, HeartHandshake, Droplets, Sprout, PencilRuler, Wallet, CalendarDays, ChartColumn } from 'lucide-react';
 import { projects, type Project } from '@/data/portfolio';
 import { ProjectMedia } from './project-media';
 import { usePhoneView } from '@/components/ui/use-phone-view';
@@ -11,6 +11,20 @@ const copyItem = { hidden: { opacity: 0, y: 6 }, visible: { opacity: 1, y: 0, tr
 const immediateReveal = { hidden: { opacity: 1, x: 0, y: 0, scale: 1 }, visible: { opacity: 1, x: 0, y: 0, scale: 1, transition: { duration: 0 } } };
 
 function ProjectArtwork({ visual }: { visual: Project['visual'] }) {
+  if (visual === 'finance') {
+    return <div className="project-art art-finance" aria-hidden="true">
+      <div className="art-grid" />
+      <div className="jws-mockup finance-mockup">
+        <div className="mockup-toolbar"><span /><span /><span /><strong>WINDOWS DESKTOP</strong></div>
+        <div className="finance-mockup-panels">
+          <div><Wallet /><span>Budget</span></div>
+          <div><ChartColumn /><span>Reports</span></div>
+          <div><CalendarDays /><span>Schedule</span></div>
+        </div>
+      </div>
+      <div className="art-caption"><span>FINANCE / PRODUCTIVITY</span><span>CONCEPT ARTWORK</span></div>
+    </div>;
+  }
   return <div className={`project-art art-${visual}`} aria-hidden="true"><div className="art-grid" />
     {visual === 'jws' && <div className="jws-mockup"><div className="mockup-toolbar"><span /><span /><span /><strong>JWS / SERVICE WORKSPACE</strong></div><div className="mockup-body"><div className="mockup-sidebar"><HeartHandshake size={24} /><i /><i /><i /></div><div className="mockup-board"><span className="mockup-title">Care, coordinated.</span><div className="mockup-columns">{['Requests', 'Assigned', 'Review'].map(label => <div key={label}><small>{label}</small><div /><div /></div>)}</div><div className="mockup-privacy"><span /> Protected workflows</div></div></div></div>}
     {visual === 'drawing' && <div className="drawing-mockup"><div className="drawing-sheet"><svg viewBox="0 0 280 300"><path d="M140 238C81 215 45 168 62 110C91 107 126 126 140 152C152 113 183 82 222 85C230 161 197 210 140 238Z" /><path d="M140 253V153M140 211L88 152M140 185L195 122M140 231L191 173" /></svg><span>INPUT / OUTLINE</span></div><div className="drawing-sheet rendered"><svg viewBox="0 0 280 300"><path d="M140 238C81 215 45 168 62 110C91 107 126 126 140 152C152 113 183 82 222 85C230 161 197 210 140 238Z" /><path d="M140 253V153M140 211L88 152M140 185L195 122M140 231L191 173" /></svg><span>REFINE / COLOR</span></div><span className="drawing-tool"><PencilRuler size={20} /></span></div>}
@@ -35,7 +49,9 @@ export default function ProjectShowcase({ availableMedia }: { availableMedia: st
         <motion.div className="project-actions" variants={itemVariants}><button className="text-link" onClick={() => setOpen(open === index ? null : index)} aria-expanded={open === index} aria-controls={`project-detail-${index}`}>Behind the project<ChevronDown size={15} style={{ transform: open === index ? 'rotate(180deg)' : undefined }} /></button>{project.url && <a className="project-github text-link" href={project.url} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on GitHub`}><Github size={16} />GitHub<ArrowUpRight size={14} /></a>}</motion.div>
       </motion.div>
       <div id={`project-detail-${index}`} className="project-detail-region"><AnimatePresence initial={false}>{open === index && <motion.div className="project-detail-motion" initial={reduced ? false : { height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduced ? 0 : .35, ease: [.22, 1, .36, 1] }}>
-        <div className="glass glass-medium project-details">{[['Overview', project.subtitle], ['My contribution', project.contribution], ['Problem', project.problem], ['Approach', project.solution], ['Outcome', project.outcome]].map(([label, copy]) => <div key={label}><h4>{label}</h4><p>{copy}</p></div>)}<div className="project-detail-stack"><h4>Technologies</h4><p>{project.technologies.join(' · ')}</p></div>{project.url && <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-link">View Project on GitHub<ArrowUpRight size={15} /></a>}</div>
+        <div className="glass glass-medium project-details">{[['Overview', project.description ?? project.subtitle], ['My contribution', project.contribution], ['Problem', project.problem], ['Approach', project.solution], ['Outcome', project.outcome]].map(([label, copy]) => <div key={label}><h4>{label}</h4><p>{copy}</p></div>)}{project.features && <div className="project-detail-features"><h4>Key features</h4>
+          <ul>{project.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+        </div>}<div className="project-detail-stack"><h4>Technologies</h4><p>{project.technologies.join(' · ')}</p></div>{project.url && <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-link">View Project on GitHub<ArrowUpRight size={15} /></a>}</div>
       </motion.div>}</AnimatePresence></div>
     </motion.article>
   </motion.div>)}</div>;
