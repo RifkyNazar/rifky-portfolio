@@ -9,13 +9,13 @@ export const viewport: import('next').Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: siteUrl,
+  metadataBase: siteUrl ?? new URL('https://rifky-portfolio.vercel.app'),
   title: { default: siteTitle, template: `%s | ${profile.name}` },
   description: siteDescription,
   applicationName: `${profile.name} Portfolio`,
   authors: [{ name: profile.name, ...(siteUrl ? { url: siteUrl.href } : {}) }],
   creator: profile.name,
-  keywords: [profile.name, profile.role, 'Web Developer', 'React', 'Next.js', 'Node.js', 'Information Technology', 'Sri Lanka', 'AI', 'Computer Vision'],
+  keywords: [profile.name, profile.role, ...profile.specializations, 'Web Developer', 'React', 'Next.js', 'Node.js', 'Information Technology', 'Sri Lanka', 'AI', 'Image Processing', 'Mobile Development', 'Desktop Development'],
   ...(siteUrl ? { alternates: { canonical: '/' } } : {}),
   openGraph: { title: siteTitle, description: siteDescription, type: 'website', locale: 'en_US', siteName: `${profile.name} Portfolio`, ...(siteUrl ? { url: siteUrl.href } : {}) },
   twitter: { card: 'summary_large_image', title: siteTitle, description: siteDescription, images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: `${profile.name} — ${profile.role}` }] },

@@ -153,19 +153,19 @@ export default function Portfolio({ availableMedia = [] }: { availableMedia?: st
       <section id="about" className="section container">
         <SectionHeading number="01" label="A LITTLE ABOUT ME" title="Curiosity meets craft." />
         <div className="about-grid">
-          <Reveal delay={.06}><p className="about-lead">I’m Rifky, an IT undergraduate drawn to the space where <em>thoughtful design meets useful technology.</em></p>
-            <p className="body-copy">I connect responsive interfaces with database-backed applications. My university work also explores how image processing and computer vision can make digital experiences more intelligent.</p>
-            <p className="body-copy">Each project is an opportunity to understand a problem, make careful decisions, and keep learning.</p>
+          <Reveal delay={.06}><p className="about-lead">I’m Rifky, a <em>Software Developer</em> with project experience in full-stack development, intelligent applications, and computer vision.</p>
+            <p className="body-copy">I build responsive web interfaces, integrate APIs, and work with databases. My projects also include Android and desktop applications, and my university work explores image processing and machine learning fundamentals.</p>
+            <p className="body-copy">I enjoy combining software engineering and interface design to build useful, reliable applications while strengthening my core development skills.</p>
             <div className="focus-tags">{focus.map((item, index) => <span key={item}><small aria-hidden="true">{String(index + 1).padStart(2, '0')}</small>{item}</span>)}</div>
           </Reveal>
-          <Reveal delay={.14}><Glass className="education" depth="medium"><span className="education-icon"><GraduationCap size={25} /></span><span className="eyebrow">THE FOUNDATION</span><h3>{education.university}</h3><p>{education.degree}</p><span className="education-faculty">{education.faculty}</span><div className="education-line" /><div className="education-dates"><span>{education.period}</span><span>Expected graduation<strong>{education.graduation}</strong></span></div></Glass></Reveal>
+          <Reveal delay={.14}><Glass className="education" depth="medium"><span className="education-icon"><GraduationCap size={25} /></span><span className="eyebrow">THE FOUNDATION</span><h3>{education.university}</h3><p>{education.degree}</p><span className="education-faculty">{education.faculty}</span><div className="education-line" /><div className="education-dates"><span>{education.period}</span><span>Degree status<strong>{education.status}</strong></span></div></Glass></Reveal>
         </div>
       </section>
 
       <section id="experience" className="section container">
         <SectionHeading number="02" label="FEATURED ENGINEERING" title="Built for real needs." description="A closer look at the decisions behind a community service platform." />
         <Reveal delay={.08}><Glass className="case-study" depth="medium">
-          <div className="case-header"><span className="case-label"><Layers size={16} /> FEATURED CASE STUDY</span><span className="case-role">{profile.role}</span></div>
+          <div className="case-header"><span className="case-label"><Layers size={16} /> FEATURED CASE STUDY</span><span className="case-role">Full-Stack Developer</span></div>
           <div className="case-intro"><Reveal delay={.08} distance={18}><h3>Janaza Welfare<br />Society<span>.</span></h3><p>Technology in service of community.</p></Reveal><div className="case-summary"><p>A mobile-first welfare service platform that connects public requests with the people and processes that fulfill them.</p><a className="text-link" href={projects[0].url} target="_blank" rel="noopener noreferrer">Explore on GitHub<ArrowUpRight size={16} /></a></div></div>
           <div className="case-workflow" aria-label="Service workflow"><div><span>01</span><strong>Request</strong><small>Public service & transportation</small></div><ArrowUpRight size={18} aria-hidden="true" /><div><span>02</span><strong>Coordinate</strong><small>Approval, assignment & tracking</small></div><ArrowUpRight size={18} aria-hidden="true" /><div><span>03</span><strong>Review</strong><small>Secure records & confirmations</small></div></div>
           <div className="case-story">{[['Problem', projects[0].problem], ['Solution', projects[0].solution], ['My contribution', projects[0].contribution], ['Outcome', projects[0].outcome]].map(([label, copy]) => <div key={label}><h4>{label}</h4><p>{copy}</p></div>)}</div>

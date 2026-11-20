@@ -1,16 +1,17 @@
 ﻿export const profile = {
-  name: 'Mohammed Rifky', role: 'Full-Stack Developer', location: 'Sri Lanka',
+  name: 'Mohammed Rifky', role: 'Software Developer', location: 'Sri Lanka',
+  specializations: ['Full-Stack Development', 'AI & Intelligent Systems', 'Computer Vision'],
   email: 'rifky15648@gmail.com', phone: '+94 75 386 2747', phoneHref: 'tel:+94753862747',
   github: 'https://github.com/RifkyNazar',
   linkedin: 'https://www.linkedin.com/in/mohamed-rifky-00a8352a9',
   portrait: '/images/rifky-profile.png', cv: '/Mohammed-Rifky-CV.pdf',
-  description: 'I build thoughtful digital experiences using modern web technologies, intelligent systems, and clean user-centered design.',
+  description: 'I build practical software, from full-stack web systems to intelligent applications and computer vision tools.',
 } as const;
 export const education = {
   degree: 'BSc in Information Technology', university: 'Rajarata University of Sri Lanka',
-  faculty: 'Faculty of Applied Sciences', period: '2023 – Present', graduation: '2027',
+  faculty: 'Faculty of Applied Sciences', period: '2023 – Present', status: 'Formal graduation pending',
 } as const;
-export const focus = ['Full-stack web development', 'Responsive interfaces', 'Database-backed applications', 'AI-assisted applications', 'Computer Vision', 'Image Processing', 'Machine Learning fundamentals'];
+export const focus = ['Full-stack web development', 'AI-assisted applications', 'Computer vision', 'Image processing', 'Android development', 'Desktop development', 'Machine learning fundamentals'];
 export const navigation = ['Home', 'About', 'Experience', 'Projects', 'Skills', 'Contact'] as const;
 export type Project = {
   title: string; subtitle: string; category: string; problem: string; solution: string;
@@ -99,13 +100,14 @@ export const projects: Project[] = [
   financeProject,
 ];
 export const skills: Record<string, string[]> = {
-  Programming: ['JavaScript', 'TypeScript', 'Python', 'Java', 'SQL', 'HTML', 'CSS'],
-  Frontend: ['React.js', 'Next.js', 'Tailwind CSS', 'Responsive Design'],
-  Backend: ['Node.js', 'Express.js', 'REST APIs'], Database: ['MySQL', 'MariaDB', 'SQLite', 'Prisma ORM'],
-  Mobile: ['Android', 'SQLite', 'CRUD operations'],
-  'AI / Data': ['Machine Learning fundamentals', 'Computer Vision', 'Image Processing', 'Data Analysis'],
-  Tools: ['Git', 'GitHub', 'Visual Studio Code', 'Android Studio', 'Jupyter Notebook', 'Google Colab', 'XAMPP'],
-  Concepts: ['Authentication', 'Role-Based Access Control', 'Database Design', 'File Validation'],
+  'Programming Languages': ['JavaScript', 'TypeScript', 'Python', 'Java', 'SQL', 'C++17'],
+  'Frontend & UI Design': ['HTML', 'CSS', 'React.js', 'Next.js', 'Tailwind CSS', 'Responsive Design'],
+  'Backend Development': ['Node.js', 'Express.js', 'REST APIs'],
+  Databases: ['MySQL', 'MariaDB', 'SQLite', 'Prisma ORM'],
+  'Mobile & Desktop': ['Android', 'Qt 6.8.0', 'Qt Widgets', 'Qt Designer'],
+  'AI, Data & Computer Vision': ['Machine Learning fundamentals', 'AI-assisted image processing', 'Computer Vision', 'Edge Detection', 'Data Analysis'],
+  'Development Tools': ['Git', 'GitHub', 'Visual Studio Code', 'Android Studio', 'Jupyter Notebook', 'Google Colab', 'XAMPP'],
+  'Software Engineering': ['Authentication', 'Role-Based Access Control', 'Database Design', 'File Validation', 'CRUD operations', 'Event-driven development', 'Object-oriented programming'],
 };
 export const certifications: ReadonlyArray<readonly [string, string]> = [
   ['AI/ML Engineer – Stage 1', 'SLIIT Faculty of Computing'],

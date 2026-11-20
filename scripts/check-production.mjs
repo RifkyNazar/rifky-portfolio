@@ -5,7 +5,8 @@ const homepage = await fetch(base);
 assert.equal(homepage.status, 200);
 const html = await homepage.text();
 for (const id of ['home', 'about', 'experience', 'projects', 'skills', 'contact']) assert.ok(html.includes(`id="${id}"`), `Missing section ${id}`);
-for (const content of ['Mohammed Rifky', 'BSc in Information Technology', 'Faculty of Applied Sciences', '2027', 'Janaza Welfare', 'AI-Guided Drawing', 'Water Logger', 'Sparkling', 'Plant Analysis', 'AI/ML Engineer', 'HP LIFE']) assert.ok(html.includes(content), `Missing content ${content}`);
+for (const content of ['Mohammed Rifky', 'Software Developer', 'BSc in Information Technology', 'Faculty of Applied Sciences', 'Formal graduation pending', 'Janaza Welfare', 'AI-Guided Drawing', 'Water Logger', 'Sparkling', 'Plant Analysis', 'Personal Finance &amp; Schedule Management System', 'AI/ML Engineer', 'HP LIFE']) assert.ok(html.includes(content), `Missing content ${content}`);
+assert.match(html, /<title>Mohammed Rifky \| Software Developer<\/title>/);
 assert.match(html, /name="twitter:card"/);
 assert.match(html, /property="og:title"/);
 assert.ok(!html.includes('rifky-cv.pdf'));
@@ -32,7 +33,13 @@ const topics = [
   ['Why should I consider Rifky for an internship?', /practical full-stack/],
   ['React frontend', /Next.js/], ['backend Node', /Express/], ['computer vision', /leaf measurements/],
   ['TATA Vision', /JWT/], ['Water Logger', /SQLite/], ['digit recognizer', /0–9/],
-  ['education', /2027/], ['certifications', /SLIIT/], ['GitHub', /RifkyNazar/],
+  ['Has Rifky graduated?', /Formal graduation pending/], ['certifications', /SLIIT/], ['GitHub', /RifkyNazar/],
+  ['What kind of developer is Rifky?', /Software Developer/],
+  ['Is Rifky only a full-stack developer?', /core strength.*Android and C\+\+\/Qt desktop/],
+  ['What are Rifky’s core technical strengths?', /Full-stack web development.*computer vision/],
+  ['Does Rifky have AI and computer vision experience?', /foundational machine learning knowledge/],
+  ['What desktop applications has Rifky developed?', /Personal Finance & Schedule Management System/],
+  ['Does Rifky have mobile development experience?', /Android development experience.*Water Logger/],
   ['LinkedIn', /mohamed-rifky-00a8352a9/], ['plant analysis', /plant-height/],
   ['What is the capital of France?', /only knows information included/],
 ];

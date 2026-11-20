@@ -1,7 +1,7 @@
 import { education, profile } from '@/data/portfolio';
 
 export const siteTitle = `${profile.name} | ${profile.role}`;
-export const siteDescription = 'Mohammed Rifky is an Information Technology undergraduate and full-stack developer in Sri Lanka, building modern web, mobile and AI-assisted applications.';
+export const siteDescription = 'Mohammed Rifky is a Software Developer with project experience in full-stack web development, AI-assisted applications, computer vision, image processing, and mobile and desktop development.';
 
 // Set the final origin at build time; never assume a production domain.
 const configuredUrl = process.env.SITE_URL?.trim();

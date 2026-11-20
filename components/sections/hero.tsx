@@ -54,6 +54,6 @@ export function Hero({ downloadCV }: { downloadCV: () => Promise<void> }) {
       </motion.div>
       <div className="portrait-caption"><span>THE PERSON BEHIND THE CODE</span><div className="portrait-location"><MapPin size={12} /> BASED IN {profile.location.toUpperCase()}</div></div>
     </Reveal>
-    <div className="hero-foot"><span>WEB DEVELOPMENT <i>/</i> INTELLIGENT EXPERIENCES</span><a href="#about"><span className="scroll-track" aria-hidden="true"><ArrowDown size={14} /></span>Scroll to discover</a></div>
+    <div className="hero-foot"><span>{profile.specializations.join(' · ')}</span><a href="#about"><span className="scroll-track" aria-hidden="true"><ArrowDown size={14} /></span>Scroll to discover</a></div>
   </section>;
 }
